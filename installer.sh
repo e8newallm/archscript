@@ -45,3 +45,7 @@ fi
 echo -e "\r\n###########################################################\r\nStarting install...\r\n"
 
 ./base-setup.sh ${install_drive} ${encrypt_root}
+
+cp arch-chroot.sh /mnt/
+arch-chroot /mnt bash -c /tmp/arch-chroot.sh "one" "two"
+rm /mnt/arch-chroot.sh

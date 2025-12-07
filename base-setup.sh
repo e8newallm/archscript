@@ -1,3 +1,5 @@
+set -e
+
 install_drive=$1
 encrypt_root=$2
 
@@ -30,21 +32,14 @@ root_partition=${install_drive}2
 parted /dev/sda --script mkpart primary ext4 1025MiB 100%
 if [ ${encrypt_root} ]; then
 	echo "Encrypting the root partition..."
-	if ! cryptsetup luksFormat ${root_partition} ; then
-		echo "ERROR: Failed to encrypt ${root_partition}!"
-		exit 1
-	fi
+	cryptsetup luksFormat ${root_partition}
 
 	echo "Mounting encrypted partition as a device mapper..."
-	if ! cryptsetup open ${root_partition} root ; then
-		echo "ERROR: Failed to mount ${root_partition}!"
-		exit 1
-	fi
+	cryptsetup open ${root_partition} root
 
 	echo "Root drive ${root_partition} encrypted and mounted to /dev/mapper/root"
 	root_partition=/dev/mapper/root
 fi
-
 echo "Setting up root partition at ${root_partition}..."
 mkfs.ext4 ${root_partition}
 
