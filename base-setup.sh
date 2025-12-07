@@ -52,5 +52,5 @@ mount ${boot_partition} /mnt/boot
 # Installing base system
 echo "Setting up base system..."
 
-pacstrap -K /mnt base linux-hardened linux-firmware sudo vim git amd-ucode intel-ucode man
+pacstrap -K /mnt base linux-hardened linux-firmware amd-ucode intel-ucode
 genfstab -U /mnt >>/mnt/etc/fstab

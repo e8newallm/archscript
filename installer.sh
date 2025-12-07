@@ -47,5 +47,5 @@ echo -e "\r\n###########################################################\r\nStar
 ./base-setup.sh ${install_drive} ${encrypt_root}
 
 cp arch-chroot.sh /mnt/
-arch-chroot /mnt bash -c /tmp/arch-chroot.sh "one" "two"
+arch-chroot /mnt bash -c "/arch-chroot.sh one two"
 rm /mnt/arch-chroot.sh
