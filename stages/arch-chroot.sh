@@ -17,12 +17,21 @@ echo "KEYMAP=uk" > /etc/vconsole.conf
 
 echo "${hostname}" > /etc/hostname
 
+# Basic pacman installs
+echo "Installing basic tools..."
 pacman -Sy
-pacman -S grub efibootmgr
+pacman -S sudo vim git plymouth --noconfirm
 
-if [ ${encrypt_root} ]; then
+# Add wheel group to sudoers
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers
+
+# Installing grub
+echo "Setting up grub..."
+pacman -S grub efibootmgr --noconfirm
+
+if ${encrypt_root} ; then
 	echo "Setting up encrypted partition loading..."
-	sed -i '/^HOOKS=/ s/block/block sd-encrypt/' /etc/mkinitcpio.conf
+	sed -i '/^HOOKS=/ s/block/block plymouth sd-encrypt/' /etc/mkinitcpio.conf
 	sed -i '/#GRUB_ENABLE_CRYPTODISK/ s/#GRUB/GRUB/' /etc/default/grub
 	encrypt_config=$(blkid -s UUID -o value ${install_drive}2)
 	sed -i "/GRUB_CMDLINE_LINUX_DEFAULT/ s/loglevel=3/rd\.luks\.name=${encrypt_config}=root root=\/dev\/mapper\/root loglevel=3/" /etc/default/grub
@@ -32,4 +41,11 @@ mkinitcpio -P
 grub-install --target=x86_64-efi --efi-directory=boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-passwd
+# Create user
+echo "Creating user account ${username}..."
+useradd -m -G wheel ${username}
+passwd ${username}
+
+# Disable root
+echo "Disabling root account..."
+usermod -s /usr/sbin/nologin root

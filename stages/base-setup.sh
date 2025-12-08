@@ -3,6 +3,8 @@ set -e
 install_drive=$1
 encrypt_root=$2
 
+echo "$encrypt_root"
+
 # Set keys to be uk layout
 loadkeys uk
 
@@ -30,7 +32,7 @@ mkfs.fat -F32 ${boot_partition}
 # Root partition
 root_partition=${install_drive}2
 parted /dev/sda --script mkpart primary ext4 1025MiB 100%
-if [ ${encrypt_root} ]; then
+if ${encrypt_root} ; then
 	echo "Encrypting the root partition..."
 	cryptsetup luksFormat ${root_partition}
 
