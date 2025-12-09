@@ -2,6 +2,7 @@ hostname=$1
 username=$2
 encrypt_root=$3
 install_drive=$4
+install_gui=$5
 
 echo "Setting up localization..."
 # Set the time zone
@@ -20,7 +21,9 @@ echo "${hostname}" > /etc/hostname
 # Basic pacman installs
 echo "Installing basic tools..."
 pacman -Sy
-pacman -S sudo vim git plymouth --noconfirm
+pacman -S sudo less nvim git plymouth xdg-user-dirs networkmanager --noconfirm
+
+systemctl enable NetworkManager
 
 # Add wheel group to sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers
@@ -44,8 +47,20 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Create user
 echo "Creating user account ${username}..."
 useradd -m -G wheel ${username}
+xdg-user-dirs-update
 passwd ${username}
 
 # Disable root
 echo "Disabling root account..."
 usermod -s /usr/sbin/nologin root
+
+# Pull nvim config
+echo "Pulling nvim config..."
+(cd /home/${username}/.config && git pull github.com/e8newallm/nvim)
+
+# Install GUI
+if ${install_gui} ; then
+	echo "Installing GUI..."
+	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper --noconfirm
+	systemctl enable lightdm.service	
+fi

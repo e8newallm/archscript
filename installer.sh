@@ -3,8 +3,10 @@ clear
 
 install_drive=/dev/sda
 encrypt_root=false
-hostname=Matt-machine
-username=Matt-machine
+hostname=matt-machine
+username=matt
+install_gui=false
+
 # Get flags
 while [ $# -gt 0 ]; do
 	case "$1" in
@@ -50,6 +52,11 @@ while [ $# -gt 0 ]; do
 			shift
 			shift
 			;;
+
+		-g|--gui)
+			install_gui=true
+			shift
+			;;
 	esac
 done
 
@@ -58,6 +65,7 @@ echo "Drive: ${install_drive}"
 echo "Encrypt root: ${encrypt_root}"
 echo "Hostname: ${hostname}"
 echo "Username: ${username}"
+echo "Install GUI: ${install_gui}"
 echo ""
 echo "Is this correct (y/N): "
 read correct_config
@@ -72,5 +80,7 @@ echo -e "\r\n###########################################################\r\nStar
 stages/base-setup.sh ${install_drive} ${encrypt_root}
 
 cp stages/arch-chroot.sh /mnt/
-arch-chroot /mnt bash -c "/arch-chroot.sh ${hostname} ${username} ${encrypt_root} ${install_drive}"
+arch-chroot /mnt bash -c "/arch-chroot.sh ${hostname} ${username} ${encrypt_root} ${install_drive} ${install_gui}"
 rm /mnt/arch-chroot.sh
+
+stages/post-chroot.sh ${install_gui}
