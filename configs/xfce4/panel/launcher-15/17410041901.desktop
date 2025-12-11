@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GOG GALAXY
+Exec=env WINEPREFIX="/home/matt-dev/.wine" wine C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Start\\ Menu\\\\Programs\\\\GOG.com\\\\GOG\\ GALAXY\\\\GOG\\ GALAXY.lnk
+Type=Application
+StartupNotify=true
+Path=/home/matt-dev/.wine/dosdevices/c:/Program Files (x86)/GOG Galaxy
+Icon=BB33_GalaxyClient.0
+StartupWMClass=galaxyclient.exe
+X-XFCE-Source=file:///home/matt-dev/.local/share/applications/wine/Programs/GOG.com/GOG%20GALAXY/GOG%20GALAXY.desktop

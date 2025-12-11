@@ -79,8 +79,9 @@ echo -e "\r\n###########################################################\r\nStar
 
 stages/base-setup.sh ${install_drive} ${encrypt_root}
 
-cp stages/arch-chroot.sh /mnt/
-arch-chroot /mnt bash -c "/arch-chroot.sh ${hostname} ${username} ${encrypt_root} ${install_drive} ${install_gui}"
-rm /mnt/arch-chroot.sh
+mkdir /mnt/script
+cp stages/arch-chroot.sh /mnt/script
+arch-chroot /mnt bash -c "/script/arch-chroot.sh ${hostname} ${username} ${encrypt_root} ${install_drive} ${install_gui}"
+rm -rf /mnt/script
 
-stages/post-chroot.sh ${install_gui}
+stages/post-chroot.sh ${username} ${install_gui}
