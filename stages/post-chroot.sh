@@ -13,7 +13,5 @@ if ${install_gui} ; then
 # xfce4
 	mkdir /mnt/home/${username}/.config
 	cp -r configs/xfce4 /mnt/home/${username}/.config/
-	arch-chroot /mnt chown -R ${username}:${username} /home/${username}/.config/xfce4/
-	# cp -r configs/etc/xdg /mnt/etc/
-	# cp -r configs/usr /mnt/
+	arch-chroot /mnt chown -R ${username}:${username} /home/${username}/.config/
 fi

@@ -56,11 +56,27 @@ usermod -s /usr/sbin/nologin root
 
 # Pull nvim config
 echo "Pulling nvim config..."
-(cd /home/${username}/.config && git pull github.com/e8newallm/nvim)
+mkdir -p /home/${username}/.config
+(cd /home/${username}/.config && git clone https://github.com/e8newallm/nvim.git)
 
 # Install GUI
 if ${install_gui} ; then
 	echo "Installing GUI..."
 	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper --noconfirm
-	systemctl enable lightdm.service	
+	systemctl enable lightdm.service
+
+	echo "Installing basic tools..."
+	pacman -S firefox --noconfirm
+
+# Install themes
+# Nordic
+	mkdir /home/${username}/.themes
+	cd /home/${username}/.themes
+	git clone https://github.com/EliverLara/Nordic.git
+	(cd Nordic && git checkout darker-standard-buttons)
+
+# Tela-circle-theme
+	mkdir -p /home/${username}/.local/share/icons
+	(cd /tmp && git clone https://github.com/vinceliuice/Tela-icon-theme.git)
+	(cd /tmp/Tela-icon-theme && ./install.sh -d /home/${username}/.local/share/icons blue)
 fi
