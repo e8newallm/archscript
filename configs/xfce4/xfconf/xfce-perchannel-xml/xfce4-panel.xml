@@ -44,14 +44,7 @@
         <value type="int" value="17"/>
         <value type="int" value="19"/>
         <value type="int" value="18"/>
-        <value type="int" value="21"/>
-        <value type="int" value="25"/>
-        <value type="int" value="15"/>
         <value type="int" value="9"/>
-        <value type="int" value="7"/>
-        <value type="int" value="24"/>
-        <value type="int" value="20"/>
-        <value type="int" value="16"/>
       </property>
       <property name="span-monitors" type="bool" value="false"/>
       <property name="background-style" type="uint" value="0"/>
@@ -175,40 +168,9 @@
     <property name="plugin-4" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-7" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17477293512.desktop"/>
-      </property>
-      <property name="arrow-position" type="uint" value="0"/>
-    </property>
-    <property name="plugin-20" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16293351441.desktop"/>
-      </property>
-    </property>
     <property name="plugin-9" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
       <property name="style" type="uint" value="0"/>
-    </property>
-    <property name="plugin-21" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16293178811.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-24" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16294085562.desktop"/>
-        <value type="string" value="16294085561.desktop"/>
-        <value type="string" value="16294085563.desktop"/>
-        <value type="string" value="16294085564.desktop"/>
-      </property>
-      <property name="show-label" type="bool" value="false"/>
-      <property name="arrow-position" type="uint" value="5"/>
-    </property>
-    <property name="plugin-25" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17639325722.desktop"/>
-      </property>
     </property>
     <property name="plugin-27" type="string" value="cpugraph">
       <property name="update-interval" type="int" value="0"/>
@@ -320,16 +282,6 @@
     <property name="plugin-31" type="string" value="separator">
       <property name="expand" type="bool" value="false"/>
       <property name="style" type="uint" value="0"/>
-    </property>
-    <property name="plugin-15" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17410041901.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-16" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="17496543002.desktop"/>
-      </property>
     </property>
   </property>
 </channel>

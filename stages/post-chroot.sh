@@ -11,7 +11,10 @@ if ${install_gui} ; then
 	cp configs/etc/lightdm/slick-greeter.conf /mnt/etc/lightdm
 
 # xfce4
-	mkdir /mnt/home/${username}/.config
+	mkdir -p /mnt/home/${username}/.config
 	cp -r configs/xfce4 /mnt/home/${username}/.config/
-	arch-chroot /mnt chown -R ${username}:${username} /home/${username}/.config/
+
 fi
+
+# Set user as owner for whole home dir
+arch-chroot /mnt chown -R ${username}:${username} /home/${username}
