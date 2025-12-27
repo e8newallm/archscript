@@ -14,6 +14,8 @@ if ${install_gui} ; then
 	mkdir -p /mnt/home/${username}/.config
 	cp -r configs/xfce4 /mnt/home/${username}/.config/
 
+# Add samba drive
+	echo "//server/data                                   /server         cifs            file_mode=0777,dir_mode=0777,password2=fake,guest,nofail,x-systemd.device-timeout=9             	0	0" >> /mnt/etc/fstab
 fi
 
 # Set user as owner for whole home dir
