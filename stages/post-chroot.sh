@@ -10,6 +10,9 @@ if ${install_gui} ; then
 	cp configs/etc/lightdm/lightdm.conf /mnt/etc/lightdm
 	cp configs/etc/lightdm/slick-greeter.conf /mnt/etc/lightdm
 
+# Xorg keyboard
+	cp configs/etc/X11/xorg.conf.d/00-keyboard.conf /mnt/etc/X11/xorg.conf.d/
+
 # xfce4
 	mkdir -p /mnt/home/${username}/.config
 	cp -r configs/xfce4 /mnt/home/${username}/.config/

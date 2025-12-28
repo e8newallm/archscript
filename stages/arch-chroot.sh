@@ -21,7 +21,7 @@ echo "${hostname}" > /etc/hostname
 # Basic pacman installs
 echo "Installing basic tools..."
 pacman -Sy
-pacman -S sudo less nvim git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc clang smbclient --noconfirm
+pacman -S sudo less nvim lazygit tree-sitter-cli ttf-noto-nerd git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc clang smbclient --noconfirm
 
 systemctl enable NetworkManager
 
