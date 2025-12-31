@@ -22,16 +22,16 @@ timedatectl
 echo "Partitioning the drive: ${install_drive}..."
 
 # Boot partition
-boot_partition=${install_drive}1
 echo "Setting up boot partition at ${boot_partition}..."
 parted $install_drive --script mklabel gpt
-parted /dev/sda --script mkpart ESP fat32 1MiB 1025MiB
-parted /dev/sda --script set 1 esp on
+parted $install_drive --script mkpart ESP fat32 1MiB 1025MiB
+parted $install_drive --script set 1 esp on
+boot_partition=$(lsblk -nlpo NAME | grep $install_drive | sed -n '2p')
 mkfs.fat -F32 ${boot_partition}
 
 # Root partition
-root_partition=${install_drive}2
-parted /dev/sda --script mkpart primary ext4 1025MiB 100%
+parted $install_drive --script mkpart primary ext4 1025MiB 100%
+root_partition=$(lsblk -nlpo NAME | grep $install_drive | sed -n '3p')
 if ${encrypt_root} ; then
 	echo "Encrypting the root partition..."
 	cryptsetup luksFormat ${root_partition}

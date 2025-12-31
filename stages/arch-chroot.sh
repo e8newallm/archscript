@@ -36,7 +36,7 @@ if ${encrypt_root} ; then
 	echo "Setting up encrypted partition loading..."
 	sed -i '/^HOOKS=/ s/block/block plymouth sd-encrypt/' /etc/mkinitcpio.conf
 	sed -i '/#GRUB_ENABLE_CRYPTODISK/ s/#GRUB/GRUB/' /etc/default/grub
-	encrypt_config=$(blkid -s UUID -o value ${install_drive}2)
+	encrypt_config=$(blkid -s UUID -o value $(lsblk -nlpo NAME | grep $install_drive | sed -n '3p'))
 	sed -i "/GRUB_CMDLINE_LINUX_DEFAULT/ s/loglevel=3/rd\.luks\.name=${encrypt_config}=root root=\/dev\/mapper\/root loglevel=3/" /etc/default/grub
 fi
 mkinitcpio -P
