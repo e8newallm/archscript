@@ -21,7 +21,7 @@ echo "${hostname}" > /etc/hostname
 # Basic pacman installs
 echo "Installing basic tools..."
 pacman -Sy
-pacman -S sudo less nvim lazygit tree-sitter-cli ttf-noto-nerd git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc clang smbclient --noconfirm
+pacman -S sudo fakeroot pkgconf debugedit curl less nvim lazygit tree-sitter-cli ttf-noto-nerd git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc make clang smbclient --noconfirm
 
 systemctl enable NetworkManager
 
@@ -66,7 +66,7 @@ if ${install_gui} ; then
 	systemctl enable lightdm.service
 
 	echo "Installing basic tools..."
-	pacman -S firefox --noconfirm
+	# pacman -S  --noconfirm
 
 # Install themes
 # Nordic
@@ -79,4 +79,7 @@ if ${install_gui} ; then
 	mkdir -p /home/${username}/.local/share/icons
 	(cd /tmp && git clone https://github.com/vinceliuice/Tela-icon-theme.git)
 	(cd /tmp/Tela-icon-theme && ./install.sh -d /home/${username}/.local/share/icons blue)
+
+# librewolf
+	su ${username} -P -c "gpg --recv-keys 8A74EAAF89C17944 && cd /tmp && git clone https://aur.archlinux.org/librewolf-bin.git && cd librewolf-bin && makepkg -si"
 fi
