@@ -62,7 +62,7 @@ mkdir -p /home/${username}/.config
 # Install GUI
 if ${install_gui} ; then
 	echo "Installing GUI..."
-	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper --noconfirm
+	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper nm-connection-editor --noconfirm
 	systemctl enable lightdm.service
 
 	echo "Installing basic tools..."
