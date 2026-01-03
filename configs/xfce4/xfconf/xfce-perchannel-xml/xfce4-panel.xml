@@ -21,11 +21,9 @@
         <value type="int" value="7"/>
         <value type="int" value="17"/>
         <value type="int" value="18"/>
-        <value type="int" value="23"/>
         <value type="int" value="19"/>
         <value type="int" value="21"/>
         <value type="int" value="22"/>
-        <value type="int" value="20"/>
         <value type="int" value="8"/>
         <value type="int" value="9"/>
         <value type="int" value="10"/>
@@ -216,14 +214,14 @@
     <property name="plugin-18" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-19" type="string" value="systray"/>
-    <property name="plugin-20" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
+    <property name="plugin-19" type="string" value="systray">
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="networkmanager applet"/>
+      </property>
     </property>
     <property name="plugin-21" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
     <property name="plugin-22" type="string" value="notification-plugin"/>
-    <property name="plugin-23" type="string" value="wavelan"/>
   </property>
 </channel>

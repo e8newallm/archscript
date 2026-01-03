@@ -21,7 +21,7 @@ echo "${hostname}" > /etc/hostname
 # Basic pacman installs
 echo "Installing basic tools..."
 pacman -Sy
-pacman -S sudo fakeroot pkgconf debugedit curl less nvim lazygit tree-sitter-cli ttf-noto-nerd git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc make clang smbclient --noconfirm
+pacman -S sudo fakeroot pkgconf debugedit curl less nvim lazygit tree-sitter-cli noto-fonts ttf-noto-nerd git plymouth xdg-user-dirs networkmanager bash-completion unzip gcc make clang smbclient --noconfirm
 
 systemctl enable NetworkManager
 
@@ -62,7 +62,7 @@ mkdir -p /home/${username}/.config
 # Install GUI
 if ${install_gui} ; then
 	echo "Installing GUI..."
-	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper nm-connection-editor --noconfirm
+	pacman -S lightdm lightdm-slick-greeter xfce4 xfce4-goodies archlinux-wallpaper network-manager-applet pulseaudio pavucontrol --noconfirm
 	systemctl enable lightdm.service
 
 	echo "Installing basic tools..."
